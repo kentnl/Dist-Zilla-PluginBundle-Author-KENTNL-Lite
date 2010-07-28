@@ -141,7 +141,7 @@ sub bundle_config {
     [ 'PodCoverageTests' => {} ],
     [ 'PodSyntaxTests'   => {} ],
     _maybe( 'ReportVersions::Tiny', [ 'ReportVersions::Tiny' => {} ], ),
-    [ 'KwaliteeTests'    => {} ],
+    _maybe( 'KwaliteeTests', [ 'KwaliteeTests'    => {} ] ),
     [ 'PortabilityTests' => {} ],
     [ 'EOLTests'         => { trailing_whitespace => 1, } ],
     [ 'ExtraTests'       => {} ],
