@@ -1,5 +1,6 @@
 use strict;
 use warnings;
+
 package Dist::Zilla::PluginBundle::KENTNL::Lite;
 
 # ABSTRACT: A Minimal Build-Only replacement for @KENTNL for contributors.
@@ -40,5 +41,121 @@ Some of its dependencies have been known to fail tests on Windows platforms, and
 for this, its sensible to leave it out.
 
 =cut
+
+use Moose;
+
+with 'Dist::Zilla::Role::PluginBundle';
+
+use namespace::autoclean -also => [qw( _expand _load _defined_or _maybe )];
+
+sub _expand {
+  my ( $class, $suffix, $conf ) = @_;
+  ## no critic ( RequireInterpolationOfMetachars )
+  if ( ref $suffix ) {
+    my ( $corename, $rename ) = @{$suffix};
+    return [ q{@KENTNL::Lite/} . $corename . q{/} . $rename, 'Dist::Zilla::Plugin::' . $corename, $conf ];
+  }
+  return [ q{@KENTNL::Lite/} . $suffix, 'Dist::Zilla::Plugin::' . $suffix, $conf ];
+}
+
+sub _load {
+  my $m = shift;
+  eval " require $m ; 1" or do {
+    ## no critic (ProhibitPunctuationVars)
+    my $e = $@;
+    require Carp;
+    Carp::confess($e);
+  };
+  return;
+}
+
+=method bundle_config
+
+See L<< the C<PluginBundle> role|Dist::Zilla::Role::PluginBundle >> for what this is for, it is a method to satisfy that role.
+
+=cut
+
+sub _defined_or {
+
+  # Backcompat way of doing // in < 5.10
+  my ( $hash, $field, $default, $nowarn ) = @_;
+  $nowarn = 0 if not defined $nowarn;
+  if ( not( defined $hash && ref $hash eq 'HASH' && exists $hash->{$field} && defined $hash->{$field} ) ) {
+    require Carp;
+    ## no critic (RequireInterpolationOfMetachars)
+    Carp::carp( '[@KENTNL::Lite]' . " Warning: autofilling $field with $default " ) unless $nowarn;
+    return $default;
+  }
+  return $hash->{$field};
+}
+
+sub _maybe {
+  my ( $module, @passthrough ) = @_;
+  if ( eval "require Dist::Zilla::Plugin::$module; 1" ) {
+    return @passthrough;
+  }
+  require Carp;
+  Carp::carp( '[@KENTNL::Lite] Skipping _maybe dep ' . $module );
+  return ();
+}
+
+sub bundle_config {
+  my ( $self, $section ) = @_;
+  my $class = ( ref $self ) || $self;
+
+  # NO RELEASING. KTHX.
+  $ENV{DZIL_FAKERELEASE_FAIL} = 1;
+
+  my $arg = $section->{payload};
+
+  my @config = map { _expand( $class, $_->[0], $_->[1] ) } (
+    [
+      'AutoVersion::Relative' => {
+        major     => _defined_or( $arg, version_major         => 0 ),
+        minor     => _defined_or( $arg, version_minor         => 1 ),
+        year      => _defined_or( $arg, version_rel_year      => 2010 ),
+        month     => _defined_or( $arg, version_rel_month     => 5 ),
+        day       => _defined_or( $arg, version_rel_day       => 16 ),
+        hour      => _defined_or( $arg, version_rel_hour      => 20 ),
+        time_zone => _defined_or( $arg, version_rel_time_zone => 'Pacific/Auckland' ),
+      }
+    ],
+    [ 'GatherDir'  => {} ],
+    [ 'MetaConfig' => {} ],
+    [ 'PruneCruft' => {} ],
+    _maybe( 'GithubMeta', [ 'GithubMeta' => {} ] ),
+    [ 'License'    => {} ],
+    [ 'PkgVersion' => {} ],
+    [ 'PodWeaver'  => {} ],
+    _maybe( 'MetaProvides::Package', [ 'MetaProvides::Package' => {} ] ),
+    [ 'MetaJSON'    => {} ],
+    [ 'MetaYAML'    => {} ],
+    [ 'ModuleBuild' => {} ],
+    _maybe( 'ReadmeFromPod', [ 'ReadmeFromPod' => {} ], ),
+    [ 'ManifestSkip' => {} ],
+    [ 'Manifest'     => {} ],
+    [ 'AutoPrereq'   => {} ],
+    _maybe( 'MetaData::BuiltWith', [ 'MetaData::BuiltWith' => {} ], ),
+    [ 'CompileTests'     => {} ],
+    [ 'MetaTests'        => {} ],
+    [ 'PodCoverageTests' => {} ],
+    [ 'PodSyntaxTests'   => {} ],
+    _maybe( 'ReportVersions::Tiny', [ 'ReportVersions::Tiny' => {} ], ),
+    [ 'KwaliteeTests'    => {} ],
+    [ 'PortabilityTests' => {} ],
+    [ 'EOLTests'         => { trailing_whitespace => 1, } ],
+    [ 'ExtraTests'       => {} ],
+    [ 'TestRelease'      => {} ],
+    [ 'FakeRelease'      => {} ],
+    [ 'NextRelease'      => {} ],
+  );
+  _load( $_->[1] ) for @config;
+  return @config;
+}
+__PACKAGE__->meta->make_immutable;
+no Moose;
+
+## no critic (RequireEndWithOne)
+'Thankyou for flying with KENTNL Lite!';
 
 1;
