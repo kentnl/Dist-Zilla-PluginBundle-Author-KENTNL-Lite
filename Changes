@@ -1,6 +1,4 @@
-Revision history for {{$dist->name}}
-
-{{$NEXT}}
+Revision history for Dist-Zilla-PluginBundle-KENTNL-Lite
 
 0.01000002 2010-07-28 16:30:37 Pacific/Auckland
           First version.

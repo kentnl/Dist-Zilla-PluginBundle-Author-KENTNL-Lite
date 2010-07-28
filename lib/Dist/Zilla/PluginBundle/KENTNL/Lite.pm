@@ -2,53 +2,12 @@ use strict;
 use warnings;
 
 package Dist::Zilla::PluginBundle::KENTNL::Lite;
+BEGIN {
+  $Dist::Zilla::PluginBundle::KENTNL::Lite::VERSION = '0.01000002';
+}
 
 # ABSTRACT: A Minimal Build-Only replacement for @KENTNL for contributors.
 
-=head1 SYNOPSIS
-
-    -[@KENTNL]
-    +[@KENTNL::Lite]
-
-    dzil build
-    dzil test
-    dzil release # BANG.
-
-=head1 DESCRIPTION
-
-This is an attempt at one way of solving a common problem when contributing to things built with L<< C<Dist::Zilla>|Dist::Zilla >>.
-
-This is done by assuming that the code base that its targeting will B<NEVER> be released in its built form,
-but close enough to the normal build method that it's suitable for testing and contributing.
-
-=over 4
-
-=item * Less install time dependencies
-
-=item * More phases in the C<PluginBundle> generation are 'optional'
-
-=item * Less points of failure
-
-=back
-
-Good examples of things I've experienced in this category are the 2 following ( But awesome ) plug-ins that I use everywhere.
-
-=head2 L<< The C<::Git> Plug-ins|Dist::Zilla::Plugin::Git >>
-
-These plug-ins are great, don't get me wrong, but they pose a barrier for people on Win32, and in fact, anyone without a copy of Git installed,
-( Its hard enough getting a copy of the pre-release source without Git, but that's available in C<tar.gz> and C<.zip> on C<github> ).
-
-Working Copies of Git plug-ins are also nonessential if you're not building releases.
-
-=head2 L<< The C<::Twitter> Plug-in|Dist::Zilla::Plugin::Twitter >>
-
-Also, a handy plug-in to have, but you're not going to be needing it unless you're tweeting a release, and usually,
-that means you're me.
-
-Some of its dependencies have been known to fail tests on Windows platforms, and thus block automatic installation, so seeing you don't have any use
-for this, its sensible to leave it out.
-
-=cut
 
 use Moose;
 
@@ -77,11 +36,6 @@ sub _load {
   return;
 }
 
-=method bundle_config
-
-See L<< the C<PluginBundle> role|Dist::Zilla::Role::PluginBundle >> for what this is for, it is a method to satisfy that role.
-
-=cut
 
 sub _defined_or {
 
@@ -166,4 +120,78 @@ no Moose;
 
 ## no critic (RequireEndWithOne)
 'Thankyou for flying with KENTNL Lite!';
+
+
+__END__
+=pod
+
+=head1 NAME
+
+Dist::Zilla::PluginBundle::KENTNL::Lite - A Minimal Build-Only replacement for @KENTNL for contributors.
+
+=head1 VERSION
+
+version 0.01000002
+
+=head1 SYNOPSIS
+
+    -[@KENTNL]
+    +[@KENTNL::Lite]
+
+    dzil build
+    dzil test
+    dzil release # BANG.
+
+=head1 DESCRIPTION
+
+This is an attempt at one way of solving a common problem when contributing to things built with L<< C<Dist::Zilla>|Dist::Zilla >>.
+
+This is done by assuming that the code base that its targeting will B<NEVER> be released in its built form,
+but close enough to the normal build method that it's suitable for testing and contributing.
+
+=over 4
+
+=item * Less install time dependencies
+
+=item * More phases in the C<PluginBundle> generation are 'optional'
+
+=item * Less points of failure
+
+=back
+
+Good examples of things I've experienced in this category are the 2 following ( But awesome ) plug-ins that I use everywhere.
+
+=head2 L<< The C<::Git> Plug-ins|Dist::Zilla::Plugin::Git >>
+
+These plug-ins are great, don't get me wrong, but they pose a barrier for people on Win32, and in fact, anyone without a copy of Git installed,
+( Its hard enough getting a copy of the pre-release source without Git, but that's available in C<tar.gz> and C<.zip> on C<github> ).
+
+Working Copies of Git plug-ins are also nonessential if you're not building releases.
+
+=head2 L<< The C<::Twitter> Plug-in|Dist::Zilla::Plugin::Twitter >>
+
+Also, a handy plug-in to have, but you're not going to be needing it unless you're tweeting a release, and usually,
+that means you're me.
+
+Some of its dependencies have been known to fail tests on Windows platforms, and thus block automatic installation, so seeing you don't have any use
+for this, its sensible to leave it out.
+
+=head1 METHODS
+
+=head2 bundle_config
+
+See L<< the C<PluginBundle> role|Dist::Zilla::Role::PluginBundle >> for what this is for, it is a method to satisfy that role.
+
+=head1 AUTHOR
+
+Kent Fredric <kentnl@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Kent Fredric <kentnl@cpan.org>.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
 
