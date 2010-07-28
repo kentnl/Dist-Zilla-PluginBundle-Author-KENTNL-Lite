@@ -4,7 +4,15 @@ use warnings;
 package Dist::Zilla::PluginBundle::KENTNL::Lite;
 
 # ABSTRACT: A Minimal Build-Only replacement for @KENTNL for contributors.
-#
+
+=head1 SYNOPSIS
+
+    -[@KENTNL]
+    +[@KENTNL::Lite]
+
+    dzil build
+    dzil test
+    dzil release # BANG.
 
 =head1 DESCRIPTION
 
@@ -17,24 +25,24 @@ but close enough to the normal build method that it's suitable for testing and c
 
 =item * Less install time dependencies
 
-=item * More phases in the pluginbundle generation are 'optional'
+=item * More phases in the C<PluginBundle> generation are 'optional'
 
 =item * Less points of failure
 
 =back
 
-Good examples of things I've experienced in this category are the 2 following ( But awesome ) plugins that I use everywhere.
+Good examples of things I've experienced in this category are the 2 following ( But awesome ) plug-ins that I use everywhere.
 
-=head2 L<< The C<::Git> Plugins|Dist::Zilla::Plugin::Git >>
+=head2 L<< The C<::Git> Plug-ins|Dist::Zilla::Plugin::Git >>
 
-These plugins are great, don't get me wrong, but they pose a barrier for people on Win32, and in fact, anyone without a copy of Git installed,
-( Its hard enough getting a copy of the pre-release source without Git, but thats available in tar.gz and .zip on github ).
+These plug-ins are great, don't get me wrong, but they pose a barrier for people on Win32, and in fact, anyone without a copy of Git installed,
+( Its hard enough getting a copy of the pre-release source without Git, but that's available in C<tar.gz> and C<.zip> on C<github> ).
 
-Woring Copies of Git plugins are also nonessential if you're not building releases.
+Working Copies of Git plug-ins are also nonessential if you're not building releases.
 
-=head2 L<< The C<::Twitter> Plugin|Dist::Zilla::Plugin::Twitter >>
+=head2 L<< The C<::Twitter> Plug-in|Dist::Zilla::Plugin::Twitter >>
 
-Also, a handy plugin to have, but you're not going to be needing it unless you're tweating a realease, and usually,
+Also, a handy plug-in to have, but you're not going to be needing it unless you're tweeting a release, and usually,
 that means you're me.
 
 Some of its dependencies have been known to fail tests on Windows platforms, and thus block automatic installation, so seeing you don't have any use
@@ -95,7 +103,7 @@ sub _maybe {
     return @passthrough;
   }
   require Carp;
-  Carp::carp( '[@KENTNL::Lite] Skipping _maybe dep ' . $module );
+  Carp::carp( q{[} . q[@] . q{KENTNL::Lite] Skipping _maybe dep } . $module );
   return ();
 }
 
@@ -104,6 +112,7 @@ sub bundle_config {
   my $class = ( ref $self ) || $self;
 
   # NO RELEASING. KTHX.
+  ## no critic ( Variables::RequireLocalizedPunctuationVars )
   $ENV{DZIL_FAKERELEASE_FAIL} = 1;
 
   my $arg = $section->{payload};
@@ -141,7 +150,7 @@ sub bundle_config {
     [ 'PodCoverageTests' => {} ],
     [ 'PodSyntaxTests'   => {} ],
     _maybe( 'ReportVersions::Tiny', [ 'ReportVersions::Tiny' => {} ], ),
-    _maybe( 'KwaliteeTests', [ 'KwaliteeTests'    => {} ] ),
+    _maybe( 'KwaliteeTests',        [ 'KwaliteeTests'        => {} ] ),
     [ 'PortabilityTests' => {} ],
     [ 'EOLTests'         => { trailing_whitespace => 1, } ],
     [ 'ExtraTests'       => {} ],
@@ -158,4 +167,3 @@ no Moose;
 ## no critic (RequireEndWithOne)
 'Thankyou for flying with KENTNL Lite!';
 
-1;
