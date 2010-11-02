@@ -143,7 +143,7 @@ sub bundle_config {
     _maybe( 'ReadmeFromPod', [ 'ReadmeFromPod' => {} ], ),
     [ 'ManifestSkip' => {} ],
     [ 'Manifest'     => {} ],
-    [ 'AutoPrereq'   => {} ],
+    [ 'AutoPrereqs'   => {} ],
     _maybe( 'MetaData::BuiltWith', [ 'MetaData::BuiltWith' => {} ], ),
     [ 'CompileTests'     => {} ],
     [ 'MetaTests'        => {} ],

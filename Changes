@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          Fix auto-prereqs, +hash_tags
 
 0.01000002 2010-07-28 16:30:37 Pacific/Auckland
           First version.
