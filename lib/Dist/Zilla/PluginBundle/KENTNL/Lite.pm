@@ -3,7 +3,7 @@ use warnings;
 
 package Dist::Zilla::PluginBundle::KENTNL::Lite;
 BEGIN {
-  $Dist::Zilla::PluginBundle::KENTNL::Lite::VERSION = '0.01000002';
+  $Dist::Zilla::PluginBundle::KENTNL::Lite::VERSION = '0.01009803';
 }
 
 # ABSTRACT: A Minimal Build-Only replacement for @KENTNL for contributors.
@@ -97,9 +97,10 @@ sub bundle_config {
     _maybe( 'ReadmeFromPod', [ 'ReadmeFromPod' => {} ], ),
     [ 'ManifestSkip' => {} ],
     [ 'Manifest'     => {} ],
-    [ 'AutoPrereq'   => {} ],
-    _maybe( 'MetaData::BuiltWith', [ 'MetaData::BuiltWith' => {} ], ),
+    [ 'AutoPrereqs'   => {} ],
+    _maybe( 'MetaData::BuiltWith', [ 'MetaData::BuiltWith' => { show_uname => 1, uname_args => q{ -s -o -r -m -i } } ], ),
     [ 'CompileTests'     => {} ],
+    _maybe( 'CriticTests', [ 'CriticTests' => {} ] ),
     [ 'MetaTests'        => {} ],
     [ 'PodCoverageTests' => {} ],
     [ 'PodSyntaxTests'   => {} ],
@@ -131,7 +132,7 @@ Dist::Zilla::PluginBundle::KENTNL::Lite - A Minimal Build-Only replacement for @
 
 =head1 VERSION
 
-version 0.01000002
+version 0.01009803
 
 =head1 SYNOPSIS
 

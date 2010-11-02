@@ -7,6 +7,7 @@ use Module::Build 0.3601;
 
 my %module_build_args = (
   'build_requires' => {
+    'English' => '0',
     'File::Find' => '0',
     'File::Temp' => '0',
     'Module::Build' => '0.3601',
@@ -20,7 +21,7 @@ my %module_build_args = (
     'Kent Fredric <kentnl@cpan.org>'
   ],
   'dist_name' => 'Dist-Zilla-PluginBundle-KENTNL-Lite',
-  'dist_version' => '0.01000002',
+  'dist_version' => '0.01009803',
   'license' => 'perl',
   'module_name' => 'Dist::Zilla::PluginBundle::KENTNL::Lite',
   'recommends' => {},

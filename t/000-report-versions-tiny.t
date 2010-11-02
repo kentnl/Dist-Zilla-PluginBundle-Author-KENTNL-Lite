@@ -51,6 +51,7 @@ sub pmver {
 eval { $v .= pmver('Carp','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::AutoPrereq','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::AutoVersion::Relative','any version') };
+eval { $v .= pmver('Dist::Zilla::Plugin::Bootstrap::lib','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::CompileTests','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::EOLTests','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::ExtraTests','any version') };
@@ -71,7 +72,9 @@ eval { $v .= pmver('Dist::Zilla::Plugin::PodWeaver','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::PortabilityTests','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::PruneCruft','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::TestRelease','any version') };
+eval { $v .= pmver('Dist::Zilla::PluginBundle::KENTNL','0.01017119') };
 eval { $v .= pmver('Dist::Zilla::Role::PluginBundle','any version') };
+eval { $v .= pmver('English','any version') };
 eval { $v .= pmver('File::Find','any version') };
 eval { $v .= pmver('File::Temp','any version') };
 eval { $v .= pmver('Module::Build','0.3601') };

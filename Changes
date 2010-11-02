@@ -1,5 +1,10 @@
 Revision history for Dist-Zilla-PluginBundle-KENTNL-Lite
 
+0.01009803 2010-11-02 18:09:13 Pacific/Auckland
+          Fix auto-prereqs, +hash_tags
+          Bootstrap::lib
+          Sync changes with KENTNL 0.01017119
+
 0.01000002 2010-07-28 16:30:37 Pacific/Auckland
           First version.
 
