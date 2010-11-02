@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.01009803 2010-11-02 18:09:13 Pacific/Auckland
           Fix auto-prereqs, +hash_tags
           Bootstrap::lib
           Sync changes with KENTNL 0.01017119
