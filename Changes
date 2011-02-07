@@ -3,6 +3,7 @@ Revision history for {{$dist->name}}
 {{$NEXT}}
 
           Migrate to ::Author::KENTNL::Lite
+          Sync with ::KENTNL
 
 0.01009803 2010-11-02 18:09:13 Pacific/Auckland
           Fix auto-prereqs, +hash_tags
