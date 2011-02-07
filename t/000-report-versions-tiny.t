@@ -45,11 +45,12 @@ sub pmver {
     }
 
     # So, we should be good, right?
-    return sprintf('%-40s => %-10s%-15s%s', $module, $pmver, $wanted, "\n");
+    return sprintf('%-45s => %-10s%-15s%s', $module, $pmver, $wanted, "\n");
 }
 
 eval { $v .= pmver('Carp','any version') };
-eval { $v .= pmver('Dist::Zilla::Plugin::AutoPrereq','any version') };
+eval { $v .= pmver('Class::Load','0.06') };
+eval { $v .= pmver('Dist::Zilla::Plugin::AutoPrereqs','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::AutoVersion::Relative','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::Bootstrap::lib','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::CompileTests','any version') };
@@ -60,6 +61,7 @@ eval { $v .= pmver('Dist::Zilla::Plugin::GatherDir','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::License','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::Manifest','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::ManifestSkip','any version') };
+eval { $v .= pmver('Dist::Zilla::Plugin::MetaConfig','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::MetaJSON','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::MetaTests','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::MetaYAML','any version') };
@@ -69,10 +71,11 @@ eval { $v .= pmver('Dist::Zilla::Plugin::PkgVersion','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::PodCoverageTests','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::PodSyntaxTests','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::PodWeaver','any version') };
-eval { $v .= pmver('Dist::Zilla::Plugin::PortabilityTests','any version') };
+eval { $v .= pmver('Dist::Zilla::Plugin::Prereqs','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::PruneCruft','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::TestRelease','any version') };
-eval { $v .= pmver('Dist::Zilla::PluginBundle::KENTNL','0.01017119') };
+eval { $v .= pmver('Dist::Zilla::PluginBundle::Author::KENTNL','1.0.2') };
+eval { $v .= pmver('Dist::Zilla::PluginBundle::Author::KENTNL::Lite','0.01009803') };
 eval { $v .= pmver('Dist::Zilla::Role::PluginBundle','any version') };
 eval { $v .= pmver('English','any version') };
 eval { $v .= pmver('File::Find','any version') };

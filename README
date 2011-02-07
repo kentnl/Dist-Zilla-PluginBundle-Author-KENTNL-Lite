@@ -1,17 +1,21 @@
 NAME
-    Dist::Zilla::PluginBundle::KENTNL::Lite - A Minimal Build-Only
-    replacement for @KENTNL for contributors.
+    Dist::Zilla::PluginBundle::Author::KENTNL::Lite - A Minimal Build-Only
+    replacement for @Author::KENTNL for contributors.
 
 VERSION
-    version 0.01009803
+    version 1.0.0
 
 SYNOPSIS
-        -[@KENTNL]
-        +[@KENTNL::Lite]
+        -[@Author::KENTNL]
+        +[@Author::KENTNL::Lite]
 
         dzil build
         dzil test
         dzil release # BANG.
+
+NAMING SCHEME
+    Please read my rant in "NAMING SCHEME" in
+    Dist::Zilla::PluginBundle::Author::KENTNL about the Author:: convention.
 
 DESCRIPTION
     This is an attempt at one way of solving a common problem when
@@ -56,7 +60,7 @@ AUTHOR
     Kent Fredric <kentnl@cpan.org>
 
 COPYRIGHT AND LICENSE
-    This software is copyright (c) 2010 by Kent Fredric <kentnl@cpan.org>.
+    This software is copyright (c) 2011 by Kent Fredric <kentnl@cpan.org>.
 
     This is free software; you can redistribute it and/or modify it under
     the same terms as the Perl 5 programming language system itself.

@@ -1,4 +1,9 @@
-Revision history for Dist-Zilla-PluginBundle-KENTNL-Lite
+Revision history for Dist-Zilla-PluginBundle-Author-KENTNL-Lite
+
+1.0.0     2011-02-08 05:48:10 Pacific/Auckland
+
+          Migrate to ::Author::KENTNL::Lite
+          Sync with ::KENTNL
 
 0.01009803 2010-11-02 18:09:13 Pacific/Auckland
           Fix auto-prereqs, +hash_tags
