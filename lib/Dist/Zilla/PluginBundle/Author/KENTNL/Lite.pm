@@ -15,6 +15,12 @@ use Class::Load 0.06 qw( :all );
     dzil test
     dzil release # BANG.
 
+=head1 NAMING SCHEME
+
+Please read my rant in L<Dist::Zilla::PluginBundle::Author::KENTNL/NAMING SCHEME> about the Author:: convention.
+
+=cut
+
 =head1 DESCRIPTION
 
 This is an attempt at one way of solving a common problem when contributing to things built with L<< C<Dist::Zilla>|Dist::Zilla >>.
