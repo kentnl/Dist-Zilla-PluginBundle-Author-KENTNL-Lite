@@ -62,8 +62,18 @@ sub _expand {
   ## no critic ( RequireInterpolationOfMetachars )
   if ( ref $suffix ) {
     my ( $corename, $rename ) = @{$suffix};
+    if ( exists $conf->{-name} ) {
+      $rename = delete $conf->{-name};
+    }
     return [ q{@Author::KENTNL::Lite/} . $corename . q{/} . $rename, 'Dist::Zilla::Plugin::' . $corename, $conf ];
   }
+   if ( exists $conf->{-name} ) {
+    my $rename;
+    $rename = sprintf q{%s/%s}, $suffix, ( delete $conf->{-name} );
+    return [ q{@Author::KENTNL::Lite/} . $rename, 'Dist::Zilla::Plugin::' . $suffix, $conf ];
+
+  }
+
   return [ q{@Author::KENTNL::Lite/} . $suffix, 'Dist::Zilla::Plugin::' . $suffix, $conf ];
 }
 
@@ -89,7 +99,7 @@ sub _defined_or {
 
 sub _maybe {
   my ( $module, @passthrough ) = @_;
-  if ( load_optional_class("Dist::Zilla::Plugin::$module;") ) {
+  if ( load_optional_class("Dist::Zilla::Plugin::$module") ) {
     return @passthrough;
   }
   require Carp;
@@ -100,11 +110,11 @@ sub _maybe {
 sub _if_git_versions {
   my ( $args, $gitversions, $else ) = @_;
   if ( exists $ENV{KENTNL_GITVERSIONS} or exists $args->{git_versions} ) {
-    if ( load_optional_class("Dist::Zilla::Plugin::Git::NextVersion") ) {
+    if ( load_optional_class(q{Dist::Zilla::Plugin::Git::NextVersion}) ) {
       return @{$gitversions};
     }
     require Carp;
-    Carp::confess("Sorry, versioning for this package needs Git::NextVersion, please install it");
+    Carp::confess(q{Sorry, versioning for this package needs Git::NextVersion, please install it});
   }
   return @{$else};
 }
