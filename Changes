@@ -9,22 +9,20 @@ Revision history for {{$dist->name}}
  - Emit W3CDTF Times.
 
  [Packaging]
- 
+ - Reworked Changes file for CPAN::Changes.
+
  [Tests]
  - now does CPAN::Changes tests if installed.
 
+1.0.0 2011-02-07T16:48:10Z
+ - Migrate to ::Author::KENTNL::Lite
+ - Sync with ::KENTNL
 
+0.01009803 2010-11-02T05:09:13Z
+ - Fix auto-prereqs, +hash_tags
+ - Bootstrap::lib
+ - Sync changes with KENTNL 0.01017119
 
-1.0.0     2011-02-08 05:48:10 Pacific/Auckland
-
-          Migrate to ::Author::KENTNL::Lite
-          Sync with ::KENTNL
-
-0.01009803 2010-11-02 18:09:13 Pacific/Auckland
-          Fix auto-prereqs, +hash_tags
-          Bootstrap::lib
-          Sync changes with KENTNL 0.01017119
-
-0.01000002 2010-07-28 16:30:37 Pacific/Auckland
-          First version.
+0.01000002 2010-07-28T04:30:37Z
+ - First version.
 
