@@ -168,7 +168,7 @@ sub bundle_config {
     _maybe( 'ReadmeFromPod', [ 'ReadmeFromPod' => {} ], ),
     [ 'ManifestSkip' => {} ],
     [ 'Manifest'     => {} ],
-    [ 'AutoPrereqs'  => {} ],
+    [ 'AutoPrereqs'  => { skip => _defined_or( $arg, auto_prereqs_skip => q{}, 1 ) } ],
     [
       'Prereqs' => {
         -name                                             => 'BundleDevelNeeds',
@@ -194,6 +194,7 @@ sub bundle_config {
       }
     ],
     _maybe( 'MetaData::BuiltWith', [ 'MetaData::BuiltWith' => { show_uname => 1, uname_args => q{ -s -o -r -m -i } } ], ),
+    _maybe( 'CPANChangesTests', [ 'CPANChangesTests' => {} ] ),
     [ 'CompileTests' => {} ],
     _maybe( 'CriticTests', [ 'CriticTests' => {} ] ),
     [ 'MetaTests'        => {} ],
@@ -205,7 +206,7 @@ sub bundle_config {
     [ 'ExtraTests'  => {} ],
     [ 'TestRelease' => {} ],
     [ 'FakeRelease' => {} ],
-    [ 'NextRelease' => {} ],
+    [ 'NextRelease' => { time_zone => 'UTC', format => q[%v %{yyyy-MM-dd'T'HH:mm:ss}dZ] } ],
   );
   load_class( $_->[1] ) for @config;
   return @config;
