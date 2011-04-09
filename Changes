@@ -1,6 +1,19 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ - Sync with KENTNL 1.0.5
+
+ [Features]
+ - Adopt auto_prereqs_skip feature from ::KENTNL
+ - Add CPANChangesTests via _maybe
+ - Emit W3CDTF Times.
+
+ [Packaging]
+ 
+ [Tests]
+ - now does CPAN::Changes tests if installed.
+
+
 
 1.0.0     2011-02-08 05:48:10 Pacific/Auckland
 
