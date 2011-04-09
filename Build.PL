@@ -21,7 +21,7 @@ my %module_build_args = (
     'Kent Fredric <kentnl@cpan.org>'
   ],
   'dist_name' => 'Dist-Zilla-PluginBundle-Author-KENTNL-Lite',
-  'dist_version' => '1.0.0',
+  'dist_version' => '1.0.5',
   'license' => 'perl',
   'module_name' => 'Dist::Zilla::PluginBundle::Author::KENTNL::Lite',
   'recommends' => {},

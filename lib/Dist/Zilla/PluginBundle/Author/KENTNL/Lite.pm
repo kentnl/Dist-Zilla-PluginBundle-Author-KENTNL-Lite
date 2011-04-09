@@ -3,7 +3,7 @@ use warnings;
 
 package Dist::Zilla::PluginBundle::Author::KENTNL::Lite;
 BEGIN {
-  $Dist::Zilla::PluginBundle::Author::KENTNL::Lite::VERSION = '1.0.0';
+  $Dist::Zilla::PluginBundle::Author::KENTNL::Lite::VERSION = '1.0.5';
 }
 use Class::Load 0.06 qw( :all );
 
@@ -117,7 +117,7 @@ sub bundle_config {
     _maybe( 'ReadmeFromPod', [ 'ReadmeFromPod' => {} ], ),
     [ 'ManifestSkip' => {} ],
     [ 'Manifest'     => {} ],
-    [ 'AutoPrereqs'  => {} ],
+    [ 'AutoPrereqs'  => { skip => _defined_or( $arg, auto_prereqs_skip => q{}, 1 ) } ],
     [
       'Prereqs' => {
         -name                                             => 'BundleDevelNeeds',
@@ -143,6 +143,7 @@ sub bundle_config {
       }
     ],
     _maybe( 'MetaData::BuiltWith', [ 'MetaData::BuiltWith' => { show_uname => 1, uname_args => q{ -s -o -r -m -i } } ], ),
+    _maybe( 'CPANChangesTests', [ 'CPANChangesTests' => {} ] ),
     [ 'CompileTests' => {} ],
     _maybe( 'CriticTests', [ 'CriticTests' => {} ] ),
     [ 'MetaTests'        => {} ],
@@ -154,7 +155,7 @@ sub bundle_config {
     [ 'ExtraTests'  => {} ],
     [ 'TestRelease' => {} ],
     [ 'FakeRelease' => {} ],
-    [ 'NextRelease' => {} ],
+    [ 'NextRelease' => { time_zone => 'UTC', format => q[%v %{yyyy-MM-dd'T'HH:mm:ss}dZ] } ],
   );
   load_class( $_->[1] ) for @config;
   return @config;
@@ -175,7 +176,7 @@ Dist::Zilla::PluginBundle::Author::KENTNL::Lite - A Minimal Build-Only replaceme
 
 =head1 VERSION
 
-version 1.0.0
+version 1.0.5
 
 =head1 SYNOPSIS
 
