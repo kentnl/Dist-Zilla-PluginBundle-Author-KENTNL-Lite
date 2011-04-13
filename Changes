@@ -1,6 +1,10 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ - Sync with KENTNL 1.0.6
+
+ [Features]
+ - Maybe use Test::CPAN::Changes instead of CPANChangesTests
 
 1.0.5 2011-04-09T12:45:42Z
  - Sync with KENTNL 1.0.5

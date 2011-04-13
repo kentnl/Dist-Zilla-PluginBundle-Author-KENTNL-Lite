@@ -194,7 +194,7 @@ sub bundle_config {
       }
     ],
     _maybe( 'MetaData::BuiltWith', [ 'MetaData::BuiltWith' => { show_uname => 1, uname_args => q{ -s -o -r -m -i } } ], ),
-    _maybe( 'CPANChangesTests', [ 'CPANChangesTests' => {} ] ),
+    _maybe( 'Test::CPAN::Changes', [ 'Test::CPAN::Changes' => {} ] ),
     [ 'CompileTests' => {} ],
     _maybe( 'CriticTests', [ 'CriticTests' => {} ] ),
     [ 'MetaTests'        => {} ],
