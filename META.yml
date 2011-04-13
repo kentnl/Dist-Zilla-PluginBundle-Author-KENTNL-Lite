@@ -20,7 +20,7 @@ name: Dist-Zilla-PluginBundle-Author-KENTNL-Lite
 provides:
   Dist::Zilla::PluginBundle::Author::KENTNL::Lite:
     file: lib/Dist/Zilla/PluginBundle/Author/KENTNL/Lite.pm
-    version: v1.0.5
+    version: v1.0.6
 requires:
   Carp: 0
   Class::Load: 0.06
@@ -53,7 +53,7 @@ requires:
 resources:
   homepage: http://github.com/kentfredric/Dist-Zilla-PluginBundle-Author-KENTNL-Lite/tree
   repository: git://github.com/kentfredric/Dist-Zilla-PluginBundle-Author-KENTNL-Lite.git
-version: 1.0.5
+version: 1.0.6
 x_BuiltWith:
   modules:
     Carp: 1.17
@@ -82,12 +82,12 @@ x_BuiltWith:
     Dist::Zilla::Plugin::Prereqs: 4.200004
     Dist::Zilla::Plugin::PruneCruft: 4.200004
     Dist::Zilla::Plugin::TestRelease: 4.200004
-    Dist::Zilla::PluginBundle::Author::KENTNL: 1.0.5
+    Dist::Zilla::PluginBundle::Author::KENTNL: 1.0.6
     Dist::Zilla::PluginBundle::Author::KENTNL::Lite: NA(undef)
     Dist::Zilla::Role::PluginBundle: 4.200004
     File::Temp: 0.22
     Module::Build: 0.38
-    Moose: 1.9906
+    Moose: 2
     Test::More: 0.98
     namespace::autoclean: 0.12
   perl:
@@ -136,7 +136,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::MetaProvides::Package
       name: '@Author::KENTNL/MetaProvides::Package'
-      version: 1.12060213
+      version: 1.12060501
     -
       class: Dist::Zilla::Plugin::MetaJSON
       name: '@Author::KENTNL/MetaJSON'
@@ -206,9 +206,9 @@ x_Dist_Zilla:
       name: '@Author::KENTNL/MetaData::BuiltWith'
       version: 0.01018204
     -
-      class: Dist::Zilla::Plugin::CPANChangesTests
-      name: '@Author::KENTNL/CPANChangesTests'
-      version: 1.001
+      class: Dist::Zilla::Plugin::Test::CPAN::Changes
+      name: '@Author::KENTNL/Test::CPAN::Changes'
+      version: 0.003
     -
       class: Dist::Zilla::Plugin::CompileTests
       name: '@Author::KENTNL/CompileTests'

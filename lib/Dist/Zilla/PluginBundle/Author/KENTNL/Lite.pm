@@ -3,7 +3,7 @@ use warnings;
 
 package Dist::Zilla::PluginBundle::Author::KENTNL::Lite;
 BEGIN {
-  $Dist::Zilla::PluginBundle::Author::KENTNL::Lite::VERSION = '1.0.5';
+  $Dist::Zilla::PluginBundle::Author::KENTNL::Lite::VERSION = '1.0.6';
 }
 use Class::Load 0.06 qw( :all );
 
@@ -143,7 +143,7 @@ sub bundle_config {
       }
     ],
     _maybe( 'MetaData::BuiltWith', [ 'MetaData::BuiltWith' => { show_uname => 1, uname_args => q{ -s -o -r -m -i } } ], ),
-    _maybe( 'CPANChangesTests', [ 'CPANChangesTests' => {} ] ),
+    _maybe( 'Test::CPAN::Changes', [ 'Test::CPAN::Changes' => {} ] ),
     [ 'CompileTests' => {} ],
     _maybe( 'CriticTests', [ 'CriticTests' => {} ] ),
     [ 'MetaTests'        => {} ],
@@ -176,7 +176,7 @@ Dist::Zilla::PluginBundle::Author::KENTNL::Lite - A Minimal Build-Only replaceme
 
 =head1 VERSION
 
-version 1.0.5
+version 1.0.6
 
 =head1 SYNOPSIS
 

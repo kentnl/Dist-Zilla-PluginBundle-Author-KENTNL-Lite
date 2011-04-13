@@ -1,5 +1,11 @@
 Revision history for Dist-Zilla-PluginBundle-Author-KENTNL-Lite
 
+1.0.6 2011-04-13T13:24:16Z
+ - Sync with KENTNL 1.0.6
+
+ [Features]
+ - Maybe use Test::CPAN::Changes instead of CPANChangesTests
+
 1.0.5 2011-04-09T12:45:42Z
  - Sync with KENTNL 1.0.5
 
