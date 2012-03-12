@@ -12,7 +12,7 @@ my $v = "\n";
 
 eval {                     # no excuses!
     # report our Perl details
-    my $want = "any version";
+    my $want = 'v5.10.0';
     my $pv = ($^V || $]);
     $v .= "perl: $pv (wanted $want) on $^O from $^X\n\n";
 };
@@ -51,13 +51,12 @@ sub pmver {
 eval { $v .= pmver('Carp','any version') };
 eval { $v .= pmver('Class::Load','0.06') };
 eval { $v .= pmver('Dist::Zilla::Plugin::AutoPrereqs','any version') };
-eval { $v .= pmver('Dist::Zilla::Plugin::AutoVersion::Relative','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::Bootstrap::lib','any version') };
-eval { $v .= pmver('Dist::Zilla::Plugin::CompileTests','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::EOLTests','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::ExtraTests','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::FakeRelease','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::GatherDir','any version') };
+eval { $v .= pmver('Dist::Zilla::Plugin::Git::NextVersion','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::License','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::Manifest','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::ManifestSkip','any version') };
@@ -73,17 +72,19 @@ eval { $v .= pmver('Dist::Zilla::Plugin::PodSyntaxTests','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::PodWeaver','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::Prereqs','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::PruneCruft','any version') };
+eval { $v .= pmver('Dist::Zilla::Plugin::Test::Compile','any version') };
 eval { $v .= pmver('Dist::Zilla::Plugin::TestRelease','any version') };
-eval { $v .= pmver('Dist::Zilla::PluginBundle::Author::KENTNL','1.0.2') };
+eval { $v .= pmver('Dist::Zilla::PluginBundle::Author::KENTNL','v1.0.2') };
 eval { $v .= pmver('Dist::Zilla::PluginBundle::Author::KENTNL::Lite','0.01009803') };
 eval { $v .= pmver('Dist::Zilla::Role::PluginBundle','any version') };
-eval { $v .= pmver('English','any version') };
 eval { $v .= pmver('File::Find','any version') };
 eval { $v .= pmver('File::Temp','any version') };
 eval { $v .= pmver('Module::Build','0.3601') };
 eval { $v .= pmver('Moose','any version') };
 eval { $v .= pmver('Test::More','0.88') };
 eval { $v .= pmver('namespace::autoclean','any version') };
+eval { $v .= pmver('strict','any version') };
+eval { $v .= pmver('warnings','any version') };
 
 
 
