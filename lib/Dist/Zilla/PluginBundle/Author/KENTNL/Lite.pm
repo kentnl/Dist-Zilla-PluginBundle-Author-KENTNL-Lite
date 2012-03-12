@@ -61,7 +61,7 @@ use Moose;
 
 with 'Dist::Zilla::Role::PluginBundle';
 
-use namespace::autoclean -also => [qw( _expand _load _defined_or _maybe )];
+use namespace::autoclean -also => [qw( _expand _maybe )];
 
 sub _expand {
   my ( $class, $suffix, $conf ) = @_;
@@ -73,7 +73,7 @@ sub _expand {
     }
     return [ q{@Author::KENTNL::Lite/} . $corename . q{/} . $rename, 'Dist::Zilla::Plugin::' . $corename, $conf ];
   }
-   if ( exists $conf->{-name} ) {
+  if ( exists $conf->{-name} ) {
     my $rename;
     $rename = sprintf q{%s/%s}, $suffix, ( delete $conf->{-name} );
     return [ q{@Author::KENTNL::Lite/} . $rename, 'Dist::Zilla::Plugin::' . $suffix, $conf ];
@@ -89,20 +89,6 @@ See L<< the C<PluginBundle> role|Dist::Zilla::Role::PluginBundle >> for what thi
 
 =cut
 
-sub _defined_or {
-
-  # Backcompat way of doing // in < 5.10
-  my ( $hash, $field, $default, $nowarn ) = @_;
-  $nowarn = 0 if not defined $nowarn;
-  if ( not( defined $hash && ref $hash eq 'HASH' && exists $hash->{$field} && defined $hash->{$field} ) ) {
-    require Carp;
-    ## no critic (RequireInterpolationOfMetachars)
-    Carp::carp( '[@Author::KENTNL::Lite]' . " Warning: autofilling $field with $default " ) unless $nowarn;
-    return $default;
-  }
-  return $hash->{$field};
-}
-
 sub _maybe {
   my ( $module, @passthrough ) = @_;
   if ( load_optional_class("Dist::Zilla::Plugin::$module") ) {
@@ -113,62 +99,87 @@ sub _maybe {
   return ();
 }
 
-sub _if_git_versions {
-  my ( $args, $gitversions, $else ) = @_;
-  if ( exists $ENV{KENTNL_GITVERSIONS} or exists $args->{git_versions} ) {
-    if ( load_optional_class(q{Dist::Zilla::Plugin::Git::NextVersion}) ) {
-      return @{$gitversions};
-    }
-    require Carp;
-    Carp::confess(q{Sorry, versioning for this package needs Git::NextVersion, please install it});
-  }
-  return @{$else};
+=begin Pod::Coverage
+
+    mvp_multivalue_args
+    bundle_config_inner
+
+=end Pod::Coverage
+
+=cut
+
+sub mvp_multivalue_args { return qw( auto_prereqs_skip ) }
+
+sub _only_fiveten {
+  my ( $arg, @payload ) = @_;
+  return () if exists $ENV{'KENTNL_NOFIVETEN'};
+  return @payload unless defined $arg;
+  return @payload unless ref $arg eq 'HASH';
+  return @payload unless exists $arg->{'no_fiveten'};
+  return ();
 }
 
-sub bundle_config {
-  my ( $self, $section ) = @_;
-  my $class = ( ref $self ) || $self;
+sub bundle_config_inner {
+  my ( $class, $arg ) = @_;
+  if ( not exists $arg->{git_versions} ) {
+    require Carp;
+    Carp::croak('Sorry, Git based versions are now mandatory');
+  }
+  if ( not defined $arg->{authority} ) {
+    $arg->{authority} = 'cpan:KENTNL';
+  }
+  if ( not defined $arg->{auto_prereqs_skip} ) {
+    $arg->{auto_prereqs_skip} = [];
+  }
+  if ( not ref $arg->{auto_prereqs_skip} eq 'ARRAY' ) {
+    require Carp;
+    Carp::carp('[Author::KENTNL::Lite] auto_prereqs_skip is expected to be an array ref');
+  }
 
-  # NO RELEASING. KTHX.
-  ## no critic ( Variables::RequireLocalizedPunctuationVars )
-  $ENV{DZIL_FAKERELEASE_FAIL} = 1;
-
-  my $arg = $section->{payload};
-
-  my @config = map { _expand( $class, $_->[0], $_->[1] ) } (
+  my (@version) = (
     [
-      _if_git_versions(
-        $arg,
-        [ 'Git::NextVersion' => { version_regexp => '^(.*)-source$', first_version => '0.1.0' } ],
-        [
-          'AutoVersion::Relative' => {
-            major     => _defined_or( $arg, version_major         => 0 ),
-            minor     => _defined_or( $arg, version_minor         => 1 ),
-            year      => _defined_or( $arg, version_rel_year      => 2010 ),
-            month     => _defined_or( $arg, version_rel_month     => 5 ),
-            day       => _defined_or( $arg, version_rel_day       => 16 ),
-            hour      => _defined_or( $arg, version_rel_hour      => 20 ),
-            time_zone => _defined_or( $arg, version_rel_time_zone => 'Pacific/Auckland' ),
-          }
-        ]
-      ),
-
+      'Git::NextVersion' => {
+        version_regexp => '^(.*)-source$',
+        first_version  => '0.1.0'
+      }
     ],
-    [ 'GatherDir'  => { include_dotfiles => 1 } ],
+  );
+
+  ## no critic (ProhibitPunctuationVars)
+  my (@metadata) = (
     [ 'MetaConfig' => {} ],
-    [ 'PruneCruft' => { except           => '^.perltidyrc' } ],
-    _maybe( 'GithubMeta', [ 'GithubMeta' => {} ] ),
-    [ 'License'    => {} ],
-    [ 'PkgVersion' => {} ],
-    [ 'PodWeaver'  => {} ],
+    _maybe( 'GithubMeta',            [ 'GithubMeta'            => {} ] ),
     _maybe( 'MetaProvides::Package', [ 'MetaProvides::Package' => {} ] ),
-    [ 'MetaJSON'    => {} ],
-    [ 'MetaYAML'    => {} ],
-    [ 'ModuleBuild' => {} ],
-    _maybe( 'ReadmeFromPod', [ 'ReadmeFromPod' => {} ], ),
-    [ 'ManifestSkip' => {} ],
-    [ 'Manifest'     => {} ],
-    [ 'AutoPrereqs'  => { skip => _defined_or( $arg, auto_prereqs_skip => q{}, 1 ) } ],
+    _maybe(
+      'MetaData::BuiltWith',
+      [ 'MetaData::BuiltWith' => { $^O eq 'linux' ? ( show_uname => 1, uname_args => q{ -s -o -r -m -i } ) : () } ],
+    ),
+  );
+
+  my (@sharedir) = ();
+
+  my (@gatherfiles) = (
+    [ 'GatherDir'        => { include_dotfiles => 1 } ],
+    [ 'License'          => {} ],
+    [ 'MetaJSON'         => {} ],
+    [ 'MetaYAML'         => {} ],
+    [ 'Manifest'         => {} ],
+    [ 'MetaTests'        => {} ],
+    [ 'PodCoverageTests' => {} ],
+    [ 'PodSyntaxTests'   => {} ],
+    _maybe( 'ReportVersions::Tiny', [ 'ReportVersions::Tiny' => {} ], ),
+    _maybe( 'Test::Kwalitee',       [ 'Test::Kwalitee'       => {} ] ),
+    [ 'EOLTests' => { trailing_whitespace => 1, } ],
+    _maybe( 'Test::MinimumVersion', [ 'Test::MinimumVersion' => {} ], ),
+    [ 'Test::Compile' => {} ],
+    _maybe( 'Test::Perl::Critic', [ 'Test::Perl::Critic' => {} ] ),
+
+  );
+
+  my (@prunefiles) = ( [ 'PruneCruft' => { except => '^.perltidyrc' } ], [ 'ManifestSkip' => {} ], );
+
+  my (@regprereqs) = (
+    [ 'AutoPrereqs' => { skip => $arg->{auto_prereqs_skip} } ],
     [
       'Prereqs' => {
         -name                                             => 'BundleDevelNeeds',
@@ -182,7 +193,7 @@ sub bundle_config {
         -name                                             => 'BundleDevelRecommends',
         -phase                                            => 'develop',
         -type                                             => 'recommends',
-        'Dist::Zilla::PluginBundle::Author::KENTNL::Lite' => '1.0.0'
+        'Dist::Zilla::PluginBundle::Author::KENTNL::Lite' => '1.2.0'
       }
     ],
     [
@@ -190,24 +201,49 @@ sub bundle_config {
         -name                                       => 'BundleDevelSuggests',
         -phase                                      => 'develop',
         -type                                       => 'suggests',
-        'Dist::Zilla::PluginBundle::Author::KENTNL' => '1.0.0',
+        'Dist::Zilla::PluginBundle::Author::KENTNL' => '1.2.0',
       }
     ],
-    _maybe( 'MetaData::BuiltWith', [ 'MetaData::BuiltWith' => { show_uname => 1, uname_args => q{ -s -o -r -m -i } } ], ),
+    _maybe( 'Author::KENTNL::MinimumPerl', [ 'Author::KENTNL::MinimumPerl' => { _only_fiveten( $arg, fiveten => 1 ) } ] ),
+  );
+
+  my (@mungers) = (
+    [ 'PkgVersion'  => {} ],
+    [ 'PodWeaver'   => {} ],
+    [ 'NextRelease' => { time_zone => 'UTC', format => q[%v %{yyyy-MM-dd'T'HH:mm:ss}dZ] } ],
+
+  );
+
+  return (
+    @version,
+    @metadata,
+    @sharedir,
+    @gatherfiles,
+    @prunefiles,
+    @mungers,
+    @regprereqs,
+    _maybe( 'Authority', [ 'Authority' => { authority => $arg->{authority}, do_metadata => 1 } ] ),
+    [ 'ModuleBuild' => {} ],
+    _maybe( 'ReadmeFromPod',       [ 'ReadmeFromPod'       => {} ], ),
     _maybe( 'Test::CPAN::Changes', [ 'Test::CPAN::Changes' => {} ] ),
-    [ 'CompileTests' => {} ],
-    _maybe( 'CriticTests', [ 'CriticTests' => {} ] ),
-    [ 'MetaTests'        => {} ],
-    [ 'PodCoverageTests' => {} ],
-    [ 'PodSyntaxTests'   => {} ],
-    _maybe( 'ReportVersions::Tiny', [ 'ReportVersions::Tiny' => {} ], ),
-    _maybe( 'KwaliteeTests',        [ 'KwaliteeTests'        => {} ] ),
-    [ 'EOLTests'    => { trailing_whitespace => 1, } ],
-    [ 'ExtraTests'  => {} ],
+    _maybe( 'CheckExtraTests' => [ 'CheckExtraTests' => {} ], ),
     [ 'TestRelease' => {} ],
     [ 'FakeRelease' => {} ],
-    [ 'NextRelease' => { time_zone => 'UTC', format => q[%v %{yyyy-MM-dd'T'HH:mm:ss}dZ] } ],
   );
+}
+
+sub bundle_config {
+  my ( $self, $section ) = @_;
+  my $class = ( ref $self ) || $self;
+
+  # NO RELEASING. KTHX.
+  ## no critic ( Variables::RequireLocalizedPunctuationVars )
+  $ENV{DZIL_FAKERELEASE_FAIL} = 1;
+
+  my $arg = $section->{payload};
+
+  my @config = map { _expand( $class, $_->[0], $_->[1] ) } $class->bundle_config_inner($arg);
+
   load_class( $_->[1] ) for @config;
   return @config;
 }
