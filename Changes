@@ -1,6 +1,8 @@
 ﻿Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.3.0 2012-03-12T13:17:14Z
  - Sync with KENTNL 1.3.0
 
  [Dependencies::Changed]
