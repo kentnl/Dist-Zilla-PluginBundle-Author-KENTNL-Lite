@@ -1,6 +1,6 @@
 ﻿Revision history for Dist-Zilla-PluginBundle-Author-KENTNL-Lite
 
-1.7.2 2013-04-09T22:35:54Z
+1.7.2 2013-04-09T22:41:04Z
  - Sync to KENTNL 1.7.2
  - Use MB 0.4004
 
@@ -22,6 +22,16 @@
  - Test::More 0.88 → 0.98
  [Dependencies::Removed / develop requires]
  - Dist::Zilla::PluginBundle::Author::KENTNL v1.0.2
+
+ [Documentation]
+ - Update Copyright year
+ - Add README.mkdn
+
+ [Meta]
+ - Bugtracker to github issues
+
+ [Packaging]
+ - utilise test_requires in Build.PL
 
 1.3.0 2012-03-12T13:17:14Z
  - Sync with KENTNL 1.3.0
