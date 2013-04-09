@@ -4,7 +4,7 @@ Dist::Zilla::PluginBundle::Author::KENTNL::Lite - A Minimal Build-Only replaceme
 
 # VERSION
 
-version 1.3.1
+version 1.7.2
 
 # SYNOPSIS
 
