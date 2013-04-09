@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::PluginBundle::Author::KENTNL::Lite::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::PluginBundle::Author::KENTNL::Lite::VERSION = '1.7.2';
+  $Dist::Zilla::PluginBundle::Author::KENTNL::Lite::VERSION = '1.3.1';
 }
 use Class::Load 0.06 qw( :all );
 
@@ -221,7 +221,7 @@ Dist::Zilla::PluginBundle::Author::KENTNL::Lite - A Minimal Build-Only replaceme
 
 =head1 VERSION
 
-version 1.7.2
+version 1.3.1
 
 =head1 SYNOPSIS
 
