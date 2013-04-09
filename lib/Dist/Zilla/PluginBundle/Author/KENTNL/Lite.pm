@@ -152,7 +152,10 @@ sub bundle_config_inner {
     _maybe( 'MetaProvides::Package', [ 'MetaProvides::Package' => {} ] ),
     _maybe(
       'MetaData::BuiltWith',
-      [ 'MetaData::BuiltWith' => { $^O eq 'linux' ? ( show_uname => 1, uname_args => q{ -s -o -r -m -i } ) : () } ],
+      [
+        'MetaData::BuiltWith' =>
+          { $^O eq 'linux' ? ( show_uname => 1, uname_args => q{ -s -o -r -m -i } ) : (), show_config => 1 }
+      ],
     ),
   );
 
@@ -193,7 +196,7 @@ sub bundle_config_inner {
         -name                                             => 'BundleDevelRecommends',
         -phase                                            => 'develop',
         -type                                             => 'recommends',
-        'Dist::Zilla::PluginBundle::Author::KENTNL::Lite' => '1.2.0'
+        'Dist::Zilla::PluginBundle::Author::KENTNL::Lite' => __PACKAGE__->VERSION || '1.3.0',
       }
     ],
     [
@@ -205,6 +208,7 @@ sub bundle_config_inner {
       }
     ],
     _maybe( 'Author::KENTNL::MinimumPerl', [ 'Author::KENTNL::MinimumPerl' => { _only_fiveten( $arg, fiveten => 1 ) } ] ),
+    _maybe( 'Author::KENTNL::Latest::Selective', [ 'Author::KENTNL::Latest::Selective' => {} ] ),
   );
 
   my (@mungers) = (
@@ -224,7 +228,17 @@ sub bundle_config_inner {
     @regprereqs,
     _maybe( 'Authority', [ 'Authority' => { authority => $arg->{authority}, do_metadata => 1 } ] ),
     [ 'ModuleBuild' => {} ],
-    _maybe( 'ReadmeFromPod',       [ 'ReadmeFromPod'       => {} ], ),
+    _maybe( 'ReadmeFromPod', [ 'ReadmeFromPod' => {} ], ),
+    _maybe(
+      'ReadmeAnyFromPod',
+      [
+        'ReadmeAnyFromPod' => {
+          type     => 'markdown',
+          filename => 'README.mkdn',
+          location => 'root',
+        }
+      ]
+    ),
     _maybe( 'Test::CPAN::Changes', [ 'Test::CPAN::Changes' => {} ] ),
     _maybe( 'CheckExtraTests' => [ 'CheckExtraTests' => {} ], ),
     [ 'TestRelease' => {} ],
