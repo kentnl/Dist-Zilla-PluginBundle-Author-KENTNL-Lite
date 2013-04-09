@@ -133,7 +133,7 @@
          "Dist::Zilla::Plugin::Test::Compile" : "2.001",
          "Dist::Zilla::Plugin::TestRelease" : "4.300033",
          "Dist::Zilla::PluginBundle::Author::KENTNL" : "1.7.2",
-         "Dist::Zilla::PluginBundle::Author::KENTNL::Lite" : "NA(undef)",
+         "Dist::Zilla::PluginBundle::Author::KENTNL::Lite" : "1.7.2",
          "Dist::Zilla::Role::PluginBundle" : "4.300033",
          "File::Find" : "1.23",
          "File::Temp" : "0.23",
