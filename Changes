@@ -1,6 +1,8 @@
 ﻿Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.7.2 2013-04-09T22:42:06Z
  - Sync to KENTNL 1.7.2
  - Use MB 0.4004
 
