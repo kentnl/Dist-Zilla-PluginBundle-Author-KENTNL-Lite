@@ -152,7 +152,7 @@ sub bundle_config_inner {
       }
     ],
     _maybe( 'Author::KENTNL::MinimumPerl', [ 'Author::KENTNL::MinimumPerl' => { _only_fiveten( $arg, fiveten => 1 ) } ] ),
-    _maybe( 'Author::KENTNL::Latest::Selective', [ 'Author::KENTNL::Latest::Selective' => {} ] ),
+    _maybe( 'Author::KENTNL::Prereqs::Latest::Selective', [ 'Author::KENTNL::Prereqs::Latest::Selective' => {} ] ),
   );
 
   my (@mungers) = (
