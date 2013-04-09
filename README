@@ -3,7 +3,7 @@ NAME
     replacement for @Author::KENTNL for contributors.
 
 VERSION
-    version 1.3.0
+    version 1.7.2
 
 SYNOPSIS
         -[@Author::KENTNL]
@@ -60,7 +60,7 @@ AUTHOR
     Kent Fredric <kentnl@cpan.org>
 
 COPYRIGHT AND LICENSE
-    This software is copyright (c) 2012 by Kent Fredric <kentnl@cpan.org>.
+    This software is copyright (c) 2013 by Kent Fredric <kentnl@cpan.org>.
 
     This is free software; you can redistribute it and/or modify it under
     the same terms as the Perl 5 programming language system itself.

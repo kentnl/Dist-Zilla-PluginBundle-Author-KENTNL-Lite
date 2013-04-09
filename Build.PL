@@ -7,20 +7,17 @@ use Module::Build 0.3601;
 
 my %module_build_args = (
   "build_requires" => {
-    "File::Find" => 0,
-    "File::Temp" => 0,
-    "Module::Build" => "0.3601",
-    "Test::More" => "0.88"
+    "Module::Build" => "0.4004"
   },
   "configure_requires" => {
-    "Module::Build" => "0.3601"
+    "Module::Build" => "0.4004"
   },
   "dist_abstract" => "A Minimal Build-Only replacement for \@Author::KENTNL for contributors.",
   "dist_author" => [
     "Kent Fredric <kentnl\@cpan.org>"
   ],
   "dist_name" => "Dist-Zilla-PluginBundle-Author-KENTNL-Lite",
-  "dist_version" => "1.3.0",
+  "dist_version" => "1.7.2",
   "license" => "perl",
   "module_name" => "Dist::Zilla::PluginBundle::Author::KENTNL::Lite",
   "recommends" => {},
@@ -58,9 +55,27 @@ my %module_build_args = (
     "strict" => 0,
     "warnings" => 0
   },
-  "script_files" => []
+  "script_files" => [],
+  "test_requires" => {
+    "File::Find" => 0,
+    "File::Temp" => 0,
+    "Test::More" => "0.98"
+  }
 );
 
+
+unless ( eval { Module::Build->VERSION(0.4004) } ) {
+  my $tr = delete $module_build_args{test_requires};
+  my $br = $module_build_args{build_requires};
+  for my $mod ( keys %$tr ) {
+    if ( exists $br->{$mod} ) {
+      $br->{$mod} = $tr->{$mod} if $tr->{$mod} > $br->{$mod};
+    }
+    else {
+      $br->{$mod} = $tr->{$mod};
+    }
+  }
+}
 
 my $build = Module::Build->new(%module_build_args);
 

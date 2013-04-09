@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::PluginBundle::Author::KENTNL::Lite::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::PluginBundle::Author::KENTNL::Lite::VERSION = '1.3.0';
+  $Dist::Zilla::PluginBundle::Author::KENTNL::Lite::VERSION = '1.7.2';
 }
 use Class::Load 0.06 qw( :all );
 
@@ -96,7 +96,10 @@ sub bundle_config_inner {
     _maybe( 'MetaProvides::Package', [ 'MetaProvides::Package' => {} ] ),
     _maybe(
       'MetaData::BuiltWith',
-      [ 'MetaData::BuiltWith' => { $^O eq 'linux' ? ( show_uname => 1, uname_args => q{ -s -o -r -m -i } ) : () } ],
+      [
+        'MetaData::BuiltWith' =>
+          { $^O eq 'linux' ? ( show_uname => 1, uname_args => q{ -s -o -r -m -i } ) : (), show_config => 1 }
+      ],
     ),
   );
 
@@ -137,7 +140,7 @@ sub bundle_config_inner {
         -name                                             => 'BundleDevelRecommends',
         -phase                                            => 'develop',
         -type                                             => 'recommends',
-        'Dist::Zilla::PluginBundle::Author::KENTNL::Lite' => '1.2.0'
+        'Dist::Zilla::PluginBundle::Author::KENTNL::Lite' => __PACKAGE__->VERSION || '1.3.0',
       }
     ],
     [
@@ -149,6 +152,7 @@ sub bundle_config_inner {
       }
     ],
     _maybe( 'Author::KENTNL::MinimumPerl', [ 'Author::KENTNL::MinimumPerl' => { _only_fiveten( $arg, fiveten => 1 ) } ] ),
+    _maybe( 'Author::KENTNL::Prereqs::Latest::Selective', [ 'Author::KENTNL::Prereqs::Latest::Selective' => {} ] ),
   );
 
   my (@mungers) = (
@@ -168,7 +172,17 @@ sub bundle_config_inner {
     @regprereqs,
     _maybe( 'Authority', [ 'Authority' => { authority => $arg->{authority}, do_metadata => 1 } ] ),
     [ 'ModuleBuild' => {} ],
-    _maybe( 'ReadmeFromPod',       [ 'ReadmeFromPod'       => {} ], ),
+    _maybe( 'ReadmeFromPod', [ 'ReadmeFromPod' => {} ], ),
+    _maybe(
+      'ReadmeAnyFromPod',
+      [
+        'ReadmeAnyFromPod' => {
+          type     => 'markdown',
+          filename => 'README.mkdn',
+          location => 'root',
+        }
+      ]
+    ),
     _maybe( 'Test::CPAN::Changes', [ 'Test::CPAN::Changes' => {} ] ),
     _maybe( 'CheckExtraTests' => [ 'CheckExtraTests' => {} ], ),
     [ 'TestRelease' => {} ],
@@ -197,8 +211,8 @@ no Moose;
 ## no critic (RequireEndWithOne)
 'Thankyou for flying with KENTNL Lite!';
 
-
 __END__
+
 =pod
 
 =head1 NAME
@@ -207,7 +221,7 @@ Dist::Zilla::PluginBundle::Author::KENTNL::Lite - A Minimal Build-Only replaceme
 
 =head1 VERSION
 
-version 1.3.0
+version 1.7.2
 
 =head1 SYNOPSIS
 
@@ -271,10 +285,9 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2013 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
