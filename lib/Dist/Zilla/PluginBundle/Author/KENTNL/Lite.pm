@@ -2,6 +2,9 @@ use strict;
 use warnings;
 
 package Dist::Zilla::PluginBundle::Author::KENTNL::Lite;
+
+our $VERSION = '2.000000';
+
 use Class::Load 0.06 qw( :all );
 
 # ABSTRACT: A Minimal Build-Only replacement for @Author::KENTNL for contributors.

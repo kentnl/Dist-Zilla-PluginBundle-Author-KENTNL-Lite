@@ -12,9 +12,11 @@ try_built = 1
 ;[@Author::KENTNL::Lite]
 
 [@Author::KENTNL]
+:version          = 2.016
 git_versions      = 1
 normal_form       = numify
 mantissa          = 6
+bumpversions      = 1
 
 ;version_major     = 0
 ;version_minor     = 1
