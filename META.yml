@@ -51,8 +51,9 @@ requires:
   Dist::Zilla::Role::PluginBundle: '0'
   Moose: '0'
   namespace::autoclean: '0'
-  perl: '5.006'
+  perl: '5.008'
   strict: '0'
+  utf8: '0'
   warnings: '0'
 resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-PluginBundle-Author-KENTNL-Lite/issues
@@ -134,6 +135,7 @@ x_BuiltWith:
     Test::Pod::Coverage: '1.10'
     namespace::autoclean: '0.19'
     strict: '1.08'
+    utf8: '1.14'
     warnings: '1.24'
   perl:
     original: v5.21.1
