@@ -56,9 +56,9 @@ requires:
   strict: '0'
   warnings: '0'
 resources:
-  bugtracker: https://github.com/kentfredric/Dist-Zilla-PluginBundle-Author-KENTNL-Lite/issues
-  homepage: https://github.com/kentfredric/Dist-Zilla-PluginBundle-Author-KENTNL-Lite
-  repository: https://github.com/kentfredric/Dist-Zilla-PluginBundle-Author-KENTNL-Lite.git
+  bugtracker: https://github.com/kentnl/Dist-Zilla-PluginBundle-Author-KENTNL-Lite/issues
+  homepage: https://github.com/kentnl/Dist-Zilla-PluginBundle-Author-KENTNL-Lite
+  repository: https://github.com/kentnl/Dist-Zilla-PluginBundle-Author-KENTNL-Lite.git
 version: '2.000000'
 x_BuiltWith:
   modules:
@@ -304,6 +304,10 @@ x_Dist_Zilla:
             -
               class: Pod::Weaver::Plugin::H1Nester
               name: '@CorePrep/H1Nester'
+              version: '4.006'
+            -
+              class: Pod::Weaver::Plugin::SingleEncoding
+              name: -SingleEncoding
               version: '4.006'
             -
               class: Pod::Weaver::Section::Name

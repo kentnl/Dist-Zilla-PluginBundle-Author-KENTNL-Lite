@@ -274,6 +274,8 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Dist::Zilla::PluginBundle::Author::KENTNL::Lite - A Minimal Build-Only replacement for @Author::KENTNL for contributors.
