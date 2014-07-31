@@ -6,30 +6,12 @@
  - Sync to KENTNL 1.7.2
  - Use MB 0.4004
 
- [Dependencies::Added / develop requires]
- - Pod::Coverage::TrustPod
- - Test::CPAN::Meta
- - Test::Pod 1.41
- - Test::Pod::Coverage 1.08
- - version 0.9901
-
- [Dependencies::Changed / build requires]
- - Module::Build 0.3601 → 0.4004
-
- [Dependencies::Changed / configure requires]
- - Module::Build 0.3601 → 0.4004
-
- [Dependencies::Changed / develop recommends]
- - Dist::Zilla::PluginBundle::Author::KENTNL::Lite 0.01009803 → v1.3.0
-
- [Dependencies::Changed / develop suggests]
- - Dist::Zilla::PluginBundle::Author::KENTNL v1.2.0 → v1.7.2
-
- [Dependencies::Changed / test requires]
- - Test::More 0.88 → 0.98
-
- [Dependencies::Removed / develop requires]
- - Dist::Zilla::PluginBundle::Author::KENTNL v1.0.2
+ [Dependencies::Stats]
+ - Dependencies changed since 1.3.0, see misc/*.deps* for details
+ - build: ↑1
+ - configure: ↑1
+ - develop: +5 -1 (recommends: ↑1, suggests: ↑1)
+ - test: ↑1
 
  [Documentation]
  - Update Copyright year
@@ -44,22 +26,11 @@
 1.3.0 2012-03-12T13:17:14Z
  - Sync with KENTNL 1.3.0
 
- [Dependencies::Added / runtime requires]
- - Dist::Zilla::Plugin::Git::NextVersion
- - Dist::Zilla::Plugin::Test::Compile
- - perl v5.10.0
- - strict
- - warnings
-
- [Dependencies::Changed / develop suggests]
- - Dist::Zilla::PluginBundle::Author::KENTNL v1.0.0 → v1.2.0
-
- [Dependencies::Removed / runtime requires]
- - Dist::Zilla::Plugin::AutoVersion::Relative
- - Dist::Zilla::Plugin::CompileTests
-
- [Dependencies::Removed / test requires]
- - English
+ [Dependencies::Stats]
+ - Dependencies changed since 1.0.6, see misc/*.deps* for details
+ - develop: (suggests: ↑1)
+ - runtime: +5 -2
+ - test: -1
 
  [Internals]
  - VERSION declarations moved out of BEGIN
@@ -100,40 +71,20 @@
  - Migrate to ::Author::KENTNL::Lite
  - Sync with ::KENTNL
 
- [Dependencies::Added / develop recommends]
- - Dist::Zilla::PluginBundle::Author::KENTNL::Lite 0.01009803
-
- [Dependencies::Added / develop requires]
- - Dist::Zilla::PluginBundle::Author::KENTNL v1.0.2
- - Dist::Zilla::PluginBundle::Author::KENTNL::Lite
-
- [Dependencies::Added / develop suggests]
- - Dist::Zilla::PluginBundle::Author::KENTNL v1.0.0
-
- [Dependencies::Added / runtime requires]
- - Class::Load 0.06
- - Dist::Zilla::Plugin::AutoPrereqs
- - Dist::Zilla::Plugin::MetaConfig
- - Dist::Zilla::Plugin::Prereqs
-
- [Dependencies::Removed / develop requires]
- - Dist::Zilla::PluginBundle::KENTNL 0.01017119
-
- [Dependencies::Removed / runtime requires]
- - Dist::Zilla::Plugin::AutoPrereq
- - Dist::Zilla::Plugin::PortabilityTests
+ [Dependencies::Stats]
+ - Dependencies changed since 0.01009803, see misc/*.deps* for details
+ - develop: +2 -1 (recommends: +1, suggests: +1)
+ - runtime: +4 -2
 
 0.01009803 2010-11-02T05:09:13Z
  - Fix auto-prereqs, +hash_tags
  - Bootstrap::lib
  - Sync changes with KENTNL 0.01017119
 
- [Dependencies::Added / develop requires]
- - Dist::Zilla::Plugin::Bootstrap::lib
- - Dist::Zilla::PluginBundle::KENTNL 0.01017119
-
- [Dependencies::Added / test requires]
- - English
+ [Dependencies::Stats]
+ - Dependencies changed since 0.01000002, see misc/*.deps* for details
+ - develop: +2
+ - test: +1
 
 0.01000002 2010-07-28T04:30:37Z
  - First version.
