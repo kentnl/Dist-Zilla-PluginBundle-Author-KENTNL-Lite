@@ -1,6 +1,8 @@
 This file contains changes in OPTIONAL dependencies for standard CPAN phases (configure/build/runtime/test)
 
 1.7.3
+ [Added / test recommends]
+ - CPAN::Meta 2.120900
 
 1.7.2 2013-04-09T22:42:06Z
 
