@@ -71,7 +71,7 @@ with 'Dist::Zilla::Role::PluginBundle';
 use namespace::autoclean -also => [qw( _expand _maybe )];
 
 sub _expand {
-  my ( $class, $suffix, $conf ) = @_;
+  my ( undef, $suffix, $conf ) = @_;
   ## no critic ( RequireInterpolationOfMetachars )
   if ( ref $suffix ) {
     my ( $corename, $rename ) = @{$suffix};
@@ -127,7 +127,7 @@ sub _only_fiveten {
 }
 
 sub bundle_config_inner {
-  my ( $class, $arg ) = @_;
+  my ( undef, $arg ) = @_;
   if ( not exists $arg->{git_versions} ) {
     require Carp;
     Carp::croak('Sorry, Git based versions are now mandatory');
