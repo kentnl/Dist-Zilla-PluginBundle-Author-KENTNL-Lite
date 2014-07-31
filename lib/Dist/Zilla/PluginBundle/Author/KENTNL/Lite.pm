@@ -7,7 +7,7 @@ package Dist::Zilla::PluginBundle::Author::KENTNL::Lite;
 
 our $VERSION = '2.000000';
 
-use Class::Load 0.06 qw( :all );
+use Class::Load 0.06 qw( load_optional_class load_class );
 
 # ABSTRACT: A Minimal Build-Only replacement for @Author::KENTNL for contributors.
 
@@ -64,7 +64,7 @@ our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 
 
-use Moose;
+use Moose qw( with );
 
 with 'Dist::Zilla::Role::PluginBundle';
 
