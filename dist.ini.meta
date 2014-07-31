@@ -17,6 +17,8 @@ git_versions      = 1
 normal_form       = numify
 mantissa          = 6
 bumpversions      = 1
+toolkit           = eumm
+toolkit_hardness  = soft
 
 ;version_major     = 0
 ;version_minor     = 1
