@@ -4,7 +4,7 @@ Dist::Zilla::PluginBundle::Author::KENTNL::Lite - A Minimal Build-Only replaceme
 
 # VERSION
 
-version 1.7.2
+version 1.7.3
 
 # SYNOPSIS
 
@@ -17,13 +17,13 @@ version 1.7.2
 
 # NAMING SCHEME
 
-Please read my rant in ["NAMING SCHEME" in Dist::Zilla::PluginBundle::Author::KENTNL](http://search.cpan.org/perldoc?Dist::Zilla::PluginBundle::Author::KENTNL#NAMING SCHEME) about the Author:: convention.
+Please read my rant in ["NAMING SCHEME" in Dist::Zilla::PluginBundle::Author::KENTNL](https://metacpan.org/pod/Dist::Zilla::PluginBundle::Author::KENTNL#NAMING-SCHEME) about the Author:: convention.
 
 # DESCRIPTION
 
-This is an attempt at one way of solving a common problem when contributing to things built with [`Dist::Zilla`](http://search.cpan.org/perldoc?Dist::Zilla).
+This is an attempt at one way of solving a common problem when contributing to things built with [`Dist::Zilla`](https://metacpan.org/pod/Dist::Zilla).
 
-This is done by assuming that the code base that its targeting will __NEVER__ be released in its built form,
+This is done by assuming that the code base that its targeting will **NEVER** be released in its built form,
 but close enough to the normal build method that it's suitable for testing and contributing.
 
 - Less install time dependencies
@@ -32,14 +32,14 @@ but close enough to the normal build method that it's suitable for testing and c
 
 Good examples of things I've experienced in this category are the 2 following ( But awesome ) plug-ins that I use everywhere.
 
-## [The `::Git` Plug-ins](http://search.cpan.org/perldoc?Dist::Zilla::Plugin::Git)
+## [The `::Git` Plug-ins](https://metacpan.org/pod/Dist::Zilla::Plugin::Git)
 
 These plug-ins are great, don't get me wrong, but they pose a barrier for people on Win32, and in fact, anyone without a copy of Git installed,
 ( Its hard enough getting a copy of the pre-release source without Git, but that's available in `tar.gz` and `.zip` on `github` ).
 
 Working Copies of Git plug-ins are also nonessential if you're not building releases.
 
-## [The `::Twitter` Plug-in](http://search.cpan.org/perldoc?Dist::Zilla::Plugin::Twitter)
+## [The `::Twitter` Plug-in](https://metacpan.org/pod/Dist::Zilla::Plugin::Twitter)
 
 Also, a handy plug-in to have, but you're not going to be needing it unless you're tweeting a release, and usually,
 that means you're me.
@@ -51,7 +51,7 @@ for this, its sensible to leave it out.
 
 ## bundle\_config
 
-See [the `PluginBundle` role](http://search.cpan.org/perldoc?Dist::Zilla::Role::PluginBundle) for what this is for, it is a method to satisfy that role.
+See [the `PluginBundle` role](https://metacpan.org/pod/Dist::Zilla::Role::PluginBundle) for what this is for, it is a method to satisfy that role.
 
 # AUTHOR
 
@@ -59,7 +59,7 @@ Kent Fredric <kentnl@cpan.org>
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2014 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
