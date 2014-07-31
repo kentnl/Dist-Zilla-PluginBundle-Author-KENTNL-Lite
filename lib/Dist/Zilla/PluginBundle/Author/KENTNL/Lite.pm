@@ -121,7 +121,7 @@ sub _only_fiveten {
   my ( $arg, @payload ) = @_;
   return () if exists $ENV{'KENTNL_NOFIVETEN'};
   return @payload unless defined $arg;
-  return @payload unless ref $arg eq 'HASH';
+  return @payload unless 'HASH' eq ref $arg;
   return @payload unless exists $arg->{'no_fiveten'};
   return ();
 }
