@@ -121,7 +121,7 @@ sub _only_fiveten {
   my ( $arg, @payload ) = @_;
   return () if exists $ENV{'KENTNL_NOFIVETEN'};
   return @payload unless defined $arg;
-  return @payload unless ref $arg eq 'HASH';
+  return @payload unless 'HASH' eq ref $arg;
   return @payload unless exists $arg->{'no_fiveten'};
   return ();
 }
@@ -138,7 +138,7 @@ sub bundle_config_inner {
   if ( not defined $arg->{auto_prereqs_skip} ) {
     $arg->{auto_prereqs_skip} = [];
   }
-  if ( not ref $arg->{auto_prereqs_skip} eq 'ARRAY' ) {
+  if ( not 'ARRAY' eq ref $arg->{auto_prereqs_skip} ) {
     require Carp;
     Carp::carp('[Author::KENTNL::Lite] auto_prereqs_skip is expected to be an array ref');
   }
@@ -161,7 +161,7 @@ sub bundle_config_inner {
       'MetaData::BuiltWith',
       [
         'MetaData::BuiltWith' =>
-          { $^O eq 'linux' ? ( show_uname => 1, uname_args => q{ -s -o -r -m -i } ) : (), show_config => 1 }
+          { 'linux' eq $^O ? ( show_uname => 1, uname_args => q{ -s -o -r -m -i } ) : (), show_config => 1 }
       ],
     ),
   );
