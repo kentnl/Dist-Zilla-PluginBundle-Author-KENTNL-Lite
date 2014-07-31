@@ -147,8 +147,8 @@ sub bundle_config_inner {
     [
       'Git::NextVersion' => {
         version_regexp => '^(.*)-source$',
-        first_version  => '0.1.0'
-      }
+        first_version  => '0.1.0',
+      },
     ],
   );
 
@@ -161,7 +161,7 @@ sub bundle_config_inner {
       'MetaData::BuiltWith',
       [
         'MetaData::BuiltWith' =>
-          { 'linux' eq $^O ? ( show_uname => 1, uname_args => q{ -s -o -r -m -i } ) : (), show_config => 1 }
+          { 'linux' eq $^O ? ( show_uname => 1, uname_args => q{ -s -o -r -m -i } ) : (), show_config => 1 },
       ],
     ),
   );
@@ -195,8 +195,8 @@ sub bundle_config_inner {
         -name                                             => 'BundleDevelNeeds',
         -phase                                            => 'develop',
         -type                                             => 'requires',
-        'Dist::Zilla::PluginBundle::Author::KENTNL::Lite' => 0
-      }
+        'Dist::Zilla::PluginBundle::Author::KENTNL::Lite' => 0,
+      },
     ],
     [
       'Prereqs' => {
@@ -204,7 +204,7 @@ sub bundle_config_inner {
         -phase                                            => 'develop',
         -type                                             => 'recommends',
         'Dist::Zilla::PluginBundle::Author::KENTNL::Lite' => __PACKAGE__->VERSION || '1.3.0',
-      }
+      },
     ],
     [
       'Prereqs' => {
@@ -212,7 +212,7 @@ sub bundle_config_inner {
         -phase                                      => 'develop',
         -type                                       => 'suggests',
         'Dist::Zilla::PluginBundle::Author::KENTNL' => '1.2.0',
-      }
+      },
     ],
     _maybe( 'Author::KENTNL::MinimumPerl', [ 'Author::KENTNL::MinimumPerl' => { _only_fiveten( $arg, fiveten => 1 ) } ] ),
     _maybe( 'Author::KENTNL::Prereqs::Latest::Selective', [ 'Author::KENTNL::Prereqs::Latest::Selective' => {} ] ),
@@ -243,8 +243,8 @@ sub bundle_config_inner {
           type     => 'markdown',
           filename => 'README.mkdn',
           location => 'root',
-        }
-      ]
+        },
+      ],
     ),
     _maybe( 'Test::CPAN::Changes', [ 'Test::CPAN::Changes' => {} ] ),
     _maybe( 'CheckExtraTests' => [ 'CheckExtraTests' => {} ], ),
