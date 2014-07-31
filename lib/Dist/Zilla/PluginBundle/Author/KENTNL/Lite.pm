@@ -2,15 +2,59 @@ use strict;
 use warnings;
 
 package Dist::Zilla::PluginBundle::Author::KENTNL::Lite;
-BEGIN {
-  $Dist::Zilla::PluginBundle::Author::KENTNL::Lite::AUTHORITY = 'cpan:KENTNL';
-}
-{
-  $Dist::Zilla::PluginBundle::Author::KENTNL::Lite::VERSION = '1.7.2';
-}
+$Dist::Zilla::PluginBundle::Author::KENTNL::Lite::VERSION = '1.7.3';
 use Class::Load 0.06 qw( :all );
 
 # ABSTRACT: A Minimal Build-Only replacement for @Author::KENTNL for contributors.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -41,6 +85,11 @@ sub _expand {
 }
 
 
+
+
+
+
+
 sub _maybe {
   my ( $module, @passthrough ) = @_;
   if ( load_optional_class("Dist::Zilla::Plugin::$module") ) {
@@ -50,6 +99,14 @@ sub _maybe {
   Carp::carp( q{[} . q[@] . q{Author::KENTNL::Lite] Skipping _maybe dep } . $module );
   return ();
 }
+
+
+
+
+
+
+
+
 
 
 sub mvp_multivalue_args { return qw( auto_prereqs_skip ) }
@@ -221,7 +278,7 @@ Dist::Zilla::PluginBundle::Author::KENTNL::Lite - A Minimal Build-Only replaceme
 
 =head1 VERSION
 
-version 1.7.2
+version 1.7.3
 
 =head1 SYNOPSIS
 
@@ -285,7 +342,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2014 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
