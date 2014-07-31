@@ -22,7 +22,7 @@ name: Dist-Zilla-PluginBundle-Author-KENTNL-Lite
 provides:
   Dist::Zilla::PluginBundle::Author::KENTNL::Lite:
     file: lib/Dist/Zilla/PluginBundle/Author/KENTNL/Lite.pm
-    version: v1.7.3
+    version: '1.007003'
 requires:
   Carp: '0'
   Class::Load: '0.06'
@@ -59,7 +59,7 @@ resources:
   bugtracker: https://github.com/kentfredric/Dist-Zilla-PluginBundle-Author-KENTNL-Lite/issues
   homepage: https://github.com/kentfredric/Dist-Zilla-PluginBundle-Author-KENTNL-Lite
   repository: https://github.com/kentfredric/Dist-Zilla-PluginBundle-Author-KENTNL-Lite.git
-version: 1.7.3
+version: '1.007003'
 x_BuiltWith:
   modules:
     CPAN::Meta: '2.142060'
@@ -173,7 +173,7 @@ x_Dist_Zilla:
           repo_root: .
         Dist::Zilla::Role::Version::Sanitize:
           mantissa: '6'
-          normal_form: normal_3
+          normal_form: numify
       name: '@Author::KENTNL/Git::NextVersion::Sanitized'
       version: '0.002000'
     -
@@ -480,7 +480,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: '0'
-          tag: 1.7.3-source
+          tag: 1.007003-source
           tag_format: '%v-source'
           tag_message: v%v
           time_zone: local
@@ -530,7 +530,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: releases
           signed: '0'
-          tag: 1.7.3
+          tag: '1.007003'
           tag_format: '%v'
           tag_message: v%v
           time_zone: local

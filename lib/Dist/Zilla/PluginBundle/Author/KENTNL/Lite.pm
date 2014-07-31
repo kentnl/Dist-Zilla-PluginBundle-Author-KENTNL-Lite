@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 package Dist::Zilla::PluginBundle::Author::KENTNL::Lite;
-$Dist::Zilla::PluginBundle::Author::KENTNL::Lite::VERSION = '1.7.3';
+$Dist::Zilla::PluginBundle::Author::KENTNL::Lite::VERSION = '1.007003';
 use Class::Load 0.06 qw( :all );
 
 # ABSTRACT: A Minimal Build-Only replacement for @Author::KENTNL for contributors.
@@ -278,7 +278,7 @@ Dist::Zilla::PluginBundle::Author::KENTNL::Lite - A Minimal Build-Only replaceme
 
 =head1 VERSION
 
-version 1.7.3
+version 1.007003
 
 =head1 SYNOPSIS
 
