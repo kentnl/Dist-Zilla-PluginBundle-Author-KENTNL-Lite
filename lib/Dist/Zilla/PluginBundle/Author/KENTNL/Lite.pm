@@ -1,27 +1,79 @@
+use 5.008;    # utf8
 use strict;
 use warnings;
+use utf8;
 
 package Dist::Zilla::PluginBundle::Author::KENTNL::Lite;
-BEGIN {
-  $Dist::Zilla::PluginBundle::Author::KENTNL::Lite::AUTHORITY = 'cpan:KENTNL';
-}
-{
-  $Dist::Zilla::PluginBundle::Author::KENTNL::Lite::VERSION = '1.7.2';
-}
-use Class::Load 0.06 qw( :all );
+
+our $VERSION = '2.000000';
+
+use Class::Load 0.06 qw( load_optional_class load_class );
 
 # ABSTRACT: A Minimal Build-Only replacement for @Author::KENTNL for contributors.
 
+our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 
-use Moose;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use Moose qw( with );
 
 with 'Dist::Zilla::Role::PluginBundle';
 
 use namespace::autoclean -also => [qw( _expand _maybe )];
 
 sub _expand {
-  my ( $class, $suffix, $conf ) = @_;
+  my ( undef, $suffix, $conf ) = @_;
   ## no critic ( RequireInterpolationOfMetachars )
   if ( ref $suffix ) {
     my ( $corename, $rename ) = @{$suffix};
@@ -41,6 +93,11 @@ sub _expand {
 }
 
 
+
+
+
+
+
 sub _maybe {
   my ( $module, @passthrough ) = @_;
   if ( load_optional_class("Dist::Zilla::Plugin::$module") ) {
@@ -52,19 +109,27 @@ sub _maybe {
 }
 
 
+
+
+
+
+
+
+
+
 sub mvp_multivalue_args { return qw( auto_prereqs_skip ) }
 
 sub _only_fiveten {
   my ( $arg, @payload ) = @_;
   return () if exists $ENV{'KENTNL_NOFIVETEN'};
   return @payload unless defined $arg;
-  return @payload unless ref $arg eq 'HASH';
+  return @payload unless 'HASH' eq ref $arg;
   return @payload unless exists $arg->{'no_fiveten'};
   return ();
 }
 
 sub bundle_config_inner {
-  my ( $class, $arg ) = @_;
+  my ( undef, $arg ) = @_;
   if ( not exists $arg->{git_versions} ) {
     require Carp;
     Carp::croak('Sorry, Git based versions are now mandatory');
@@ -75,7 +140,7 @@ sub bundle_config_inner {
   if ( not defined $arg->{auto_prereqs_skip} ) {
     $arg->{auto_prereqs_skip} = [];
   }
-  if ( not ref $arg->{auto_prereqs_skip} eq 'ARRAY' ) {
+  if ( not 'ARRAY' eq ref $arg->{auto_prereqs_skip} ) {
     require Carp;
     Carp::carp('[Author::KENTNL::Lite] auto_prereqs_skip is expected to be an array ref');
   }
@@ -84,8 +149,8 @@ sub bundle_config_inner {
     [
       'Git::NextVersion' => {
         version_regexp => '^(.*)-source$',
-        first_version  => '0.1.0'
-      }
+        first_version  => '0.1.0',
+      },
     ],
   );
 
@@ -98,7 +163,7 @@ sub bundle_config_inner {
       'MetaData::BuiltWith',
       [
         'MetaData::BuiltWith' =>
-          { $^O eq 'linux' ? ( show_uname => 1, uname_args => q{ -s -o -r -m -i } ) : (), show_config => 1 }
+          { 'linux' eq $^O ? ( show_uname => 1, uname_args => q{ -s -o -r -m -i } ) : (), show_config => 1 },
       ],
     ),
   );
@@ -132,8 +197,8 @@ sub bundle_config_inner {
         -name                                             => 'BundleDevelNeeds',
         -phase                                            => 'develop',
         -type                                             => 'requires',
-        'Dist::Zilla::PluginBundle::Author::KENTNL::Lite' => 0
-      }
+        'Dist::Zilla::PluginBundle::Author::KENTNL::Lite' => 0,
+      },
     ],
     [
       'Prereqs' => {
@@ -141,7 +206,7 @@ sub bundle_config_inner {
         -phase                                            => 'develop',
         -type                                             => 'recommends',
         'Dist::Zilla::PluginBundle::Author::KENTNL::Lite' => __PACKAGE__->VERSION || '1.3.0',
-      }
+      },
     ],
     [
       'Prereqs' => {
@@ -149,7 +214,7 @@ sub bundle_config_inner {
         -phase                                      => 'develop',
         -type                                       => 'suggests',
         'Dist::Zilla::PluginBundle::Author::KENTNL' => '1.2.0',
-      }
+      },
     ],
     _maybe( 'Author::KENTNL::MinimumPerl', [ 'Author::KENTNL::MinimumPerl' => { _only_fiveten( $arg, fiveten => 1 ) } ] ),
     _maybe( 'Author::KENTNL::Prereqs::Latest::Selective', [ 'Author::KENTNL::Prereqs::Latest::Selective' => {} ] ),
@@ -180,8 +245,8 @@ sub bundle_config_inner {
           type     => 'markdown',
           filename => 'README.mkdn',
           location => 'root',
-        }
-      ]
+        },
+      ],
     ),
     _maybe( 'Test::CPAN::Changes', [ 'Test::CPAN::Changes' => {} ] ),
     _maybe( 'CheckExtraTests' => [ 'CheckExtraTests' => {} ], ),
@@ -215,13 +280,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Dist::Zilla::PluginBundle::Author::KENTNL::Lite - A Minimal Build-Only replacement for @Author::KENTNL for contributors.
 
 =head1 VERSION
 
-version 1.7.2
+version 2.000000
 
 =head1 SYNOPSIS
 
@@ -238,7 +305,8 @@ Please read my rant in L<Dist::Zilla::PluginBundle::Author::KENTNL/NAMING SCHEME
 
 =head1 DESCRIPTION
 
-This is an attempt at one way of solving a common problem when contributing to things built with L<< C<Dist::Zilla>|Dist::Zilla >>.
+This is an attempt at one way of solving a common problem when contributing to things built with
+L<< C<Dist::Zilla>|Dist::Zilla >>.
 
 This is done by assuming that the code base that its targeting will B<NEVER> be released in its built form,
 but close enough to the normal build method that it's suitable for testing and contributing.
@@ -257,8 +325,9 @@ Good examples of things I've experienced in this category are the 2 following ( 
 
 =head2 L<< The C<::Git> Plug-ins|Dist::Zilla::Plugin::Git >>
 
-These plug-ins are great, don't get me wrong, but they pose a barrier for people on Win32, and in fact, anyone without a copy of Git installed,
-( Its hard enough getting a copy of the pre-release source without Git, but that's available in C<tar.gz> and C<.zip> on C<github> ).
+These plug-ins are great, don't get me wrong, but they pose a barrier for people on Win32, and in fact, anyone without a copy of
+Git installed, ( Its hard enough getting a copy of the pre-release source without Git, but that's available in C<tar.gz> and
+C<.zip> on C<github> ).
 
 Working Copies of Git plug-ins are also nonessential if you're not building releases.
 
@@ -267,8 +336,8 @@ Working Copies of Git plug-ins are also nonessential if you're not building rele
 Also, a handy plug-in to have, but you're not going to be needing it unless you're tweeting a release, and usually,
 that means you're me.
 
-Some of its dependencies have been known to fail tests on Windows platforms, and thus block automatic installation, so seeing you don't have any use
-for this, its sensible to leave it out.
+Some of its dependencies have been known to fail tests on Windows platforms, and thus block automatic installation, so seeing
+you don't have any use for this, its sensible to leave it out.
 
 =head1 METHODS
 
@@ -285,7 +354,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2014 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
