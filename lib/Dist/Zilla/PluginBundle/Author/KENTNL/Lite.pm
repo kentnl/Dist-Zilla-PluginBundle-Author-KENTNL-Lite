@@ -9,6 +9,8 @@ use Class::Load 0.06 qw( :all );
 
 # ABSTRACT: A Minimal Build-Only replacement for @Author::KENTNL for contributors.
 
+# AUTHORITY
+
 =head1 SYNOPSIS
 
     -[@Author::KENTNL]
