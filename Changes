@@ -1,6 +1,18 @@
 ﻿Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [00 Trivial]
+ - CPAHDAY!
+ - no code changes.
+ - tests augmented.
+
+ [Dependencies::Stats]
+ - Dependencies changed since 2.000000, see misc/*.deps* for details
+ - develop: (suggests: ↑1)
+ - test: -3
+
+ [Tests]
+ - Update reportprereqs test
 
 2.000000 2014-07-31T07:41:02Z
  [00 Major]
