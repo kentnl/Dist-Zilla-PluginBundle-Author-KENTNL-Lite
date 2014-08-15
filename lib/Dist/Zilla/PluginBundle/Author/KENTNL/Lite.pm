@@ -13,59 +13,6 @@ use Class::Load 0.06 qw( load_optional_class load_class );
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 use Moose qw( with );
 
 with 'Dist::Zilla::Role::PluginBundle';
