@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::PluginBundle::Author::KENTNL::Lite;
 
-our $VERSION = '2.000001';
+our $VERSION = '2.000002';
 
 use Class::Load 0.06 qw( load_optional_class load_class );
 
@@ -235,7 +235,7 @@ Dist::Zilla::PluginBundle::Author::KENTNL::Lite - A Minimal Build-Only replaceme
 
 =head1 VERSION
 
-version 2.000001
+version 2.000002
 
 =head1 SYNOPSIS
 

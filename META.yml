@@ -18,7 +18,7 @@ name: Dist-Zilla-PluginBundle-Author-KENTNL-Lite
 provides:
   Dist::Zilla::PluginBundle::Author::KENTNL::Lite:
     file: lib/Dist/Zilla/PluginBundle/Author/KENTNL/Lite.pm
-    version: '2.000001'
+    version: '2.000002'
 requires:
   Carp: '0'
   Class::Load: '0.06'
@@ -56,7 +56,7 @@ resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-PluginBundle-Author-KENTNL-Lite/issues
   homepage: https://github.com/kentnl/Dist-Zilla-PluginBundle-Author-KENTNL-Lite
   repository: https://github.com/kentnl/Dist-Zilla-PluginBundle-Author-KENTNL-Lite.git
-version: '2.000001'
+version: '2.000002'
 x_BuiltWith:
   modules:
     CPAN::Meta: '2.142060'
@@ -484,7 +484,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: '0'
-          tag: 2.000001-source
+          tag: 2.000002-source
           tag_format: '%v-source'
           tag_message: v%v
           time_zone: local
@@ -538,7 +538,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: releases
           signed: '0'
-          tag: '2.000001'
+          tag: '2.000002'
           tag_format: '%v'
           tag_message: v%v
           time_zone: local
