@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::PluginBundle::Author::KENTNL::Lite;
 
-our $VERSION = '2.000001';
+our $VERSION = '2.000002';
 
 use Class::Load 0.06 qw( load_optional_class load_class );
 
