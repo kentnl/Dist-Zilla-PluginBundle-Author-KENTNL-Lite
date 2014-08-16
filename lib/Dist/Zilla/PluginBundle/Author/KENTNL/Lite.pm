@@ -5,66 +5,13 @@ use utf8;
 
 package Dist::Zilla::PluginBundle::Author::KENTNL::Lite;
 
-our $VERSION = '2.000000';
+our $VERSION = '2.000001';
 
 use Class::Load 0.06 qw( load_optional_class load_class );
 
 # ABSTRACT: A Minimal Build-Only replacement for @Author::KENTNL for contributors.
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 use Moose qw( with );
 
@@ -288,7 +235,7 @@ Dist::Zilla::PluginBundle::Author::KENTNL::Lite - A Minimal Build-Only replaceme
 
 =head1 VERSION
 
-version 2.000000
+version 2.000001
 
 =head1 SYNOPSIS
 
