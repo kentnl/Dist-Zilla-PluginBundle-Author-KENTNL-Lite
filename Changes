@@ -1,6 +1,13 @@
 ﻿Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ [00 Minor]
+ - use Module::Runtime instead of Class::Load
+
+ [Dependencies::Stats]
+ - Dependencies changed since 2.000001, see misc/*.deps* for details
+ - develop: +1 ↑1 (suggests: ↑2)
+ - runtime: +2 -1
 
 2.000001 2014-08-15T21:24:14Z
  [00 Trivial]
