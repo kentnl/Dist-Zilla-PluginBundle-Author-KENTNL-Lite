@@ -134,7 +134,7 @@
    "provides" : {
       "Dist::Zilla::PluginBundle::Author::KENTNL::Lite" : {
          "file" : "lib/Dist/Zilla/PluginBundle/Author/KENTNL/Lite.pm",
-         "version" : "2.001000"
+         "version" : "2.001001"
       }
    },
    "release_status" : "stable",
@@ -149,7 +149,7 @@
          "web" : "https://github.com/kentnl/Dist-Zilla-PluginBundle-Author-KENTNL-Lite"
       }
    },
-   "version" : "2.001000",
+   "version" : "2.001001",
    "x_BuiltWith" : {
       "modules" : {
          "CPAN::Meta" : "2.142060",
@@ -696,7 +696,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : null,
                   "signed" : 0,
-                  "tag" : "2.001000-source",
+                  "tag" : "2.001001-source",
                   "tag_format" : "%v-source",
                   "tag_message" : "v%v",
                   "time_zone" : "local"
@@ -767,7 +767,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : "releases",
                   "signed" : 0,
-                  "tag" : "2.001000",
+                  "tag" : "2.001001",
                   "tag_format" : "%v",
                   "tag_message" : "v%v",
                   "time_zone" : "local"

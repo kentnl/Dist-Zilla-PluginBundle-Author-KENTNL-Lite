@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::PluginBundle::Author::KENTNL::Lite;
 
-our $VERSION = '2.001000';
+our $VERSION = '2.001001';
 
 # ABSTRACT: A Minimal Build-Only replacement for @Author::KENTNL for contributors.
 
@@ -235,7 +235,7 @@ Dist::Zilla::PluginBundle::Author::KENTNL::Lite - A Minimal Build-Only replaceme
 
 =head1 VERSION
 
-version 2.001000
+version 2.001001
 
 =head1 SYNOPSIS
 
