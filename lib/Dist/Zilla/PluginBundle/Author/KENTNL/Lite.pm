@@ -5,15 +5,15 @@ use utf8;
 
 package Dist::Zilla::PluginBundle::Author::KENTNL::Lite;
 
-our $VERSION = '2.000001';
-
-use Class::Load 0.06 qw( load_optional_class load_class );
+our $VERSION = '2.001000';
 
 # ABSTRACT: A Minimal Build-Only replacement for @Author::KENTNL for contributors.
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Moose qw( with );
+use Module::Runtime qw( );
+use Try::Tiny qw( try );
 
 with 'Dist::Zilla::Role::PluginBundle';
 
@@ -47,7 +47,8 @@ sub _expand {
 
 sub _maybe {
   my ( $module, @passthrough ) = @_;
-  if ( load_optional_class("Dist::Zilla::Plugin::$module") ) {
+  my $modname = Module::Runtime::compose_module_name( 'Dist::Zilla::Plugin', $module );
+  if ( try { Module::Runtime::require_module($modname); 1 } ) {
     return @passthrough;
   }
   require Carp;
@@ -214,7 +215,6 @@ sub bundle_config {
 
   my @config = map { _expand( $class, $_->[0], $_->[1] ) } $class->bundle_config_inner($arg);
 
-  load_class( $_->[1] ) for @config;
   return @config;
 }
 __PACKAGE__->meta->make_immutable;
@@ -235,7 +235,7 @@ Dist::Zilla::PluginBundle::Author::KENTNL::Lite - A Minimal Build-Only replaceme
 
 =head1 VERSION
 
-version 2.000001
+version 2.001000
 
 =head1 SYNOPSIS
 
