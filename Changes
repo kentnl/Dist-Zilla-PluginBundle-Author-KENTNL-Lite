@@ -1,6 +1,6 @@
 ﻿Revision history for Dist-Zilla-PluginBundle-Author-KENTNL-Lite
 
-2.001000 2014-08-16T00:33:31Z
+2.001000 2014-08-18T06:37:37Z
  [00 Minor]
  - use Module::Runtime instead of Class::Load
 
